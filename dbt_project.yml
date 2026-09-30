@@ -1,0 +1,28 @@
+name: 'fifa_analytics'
+version: '1.0.0'
+
+profile: 'fifa_analytics'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+# Global Model Configurations
+models:
+  fifa_analytics:
+    # Staging models will be created as views in BigQuery by default
+    staging:
+      +materialized: view
+      +schema: staging
+    
+    # Mart models will be created as physical tables in BigQuery by default
+    marts:
+      +materialized: table
+      +schema: marts
